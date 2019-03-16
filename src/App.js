@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 
-import AddPerson from './containers/AddPerson/AddPerson';
-import "./index.css";
+import './styles/normalize.css';
+
+import { Button, Input, Logo } from './components/UI';
 
 class App extends Component {
     render() {
-        const title = React.createElement("h1", null, "Hello dear friend!");
-
         return (
             <div className="App">
                 <div>
                     <Link to="/"> Greading </Link> |
                     <Link to="/users"> Results </Link>
                 </div>
-
-                <Route path="/" exact render={() => title} />
-                <Route path="/users" exact component={AddPerson} />
-
+                <Button>Search</Button>
+                <Input
+                    placeholder='searching film'
+                    className="form-control"/>
+                <Logo />
             </div>
         );
     }
