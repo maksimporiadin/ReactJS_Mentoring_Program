@@ -1,0 +1,14 @@
+.main-layout-container {
+    max-width: 1924px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-layout-content {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    /* display: flex; */
+}

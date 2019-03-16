@@ -1,0 +1,10 @@
+.footer {
+    background: #414141;
+    height: 50px;
+    padding: 0 30px;
+}
+
+.footer > span {
+    line-height: 50px;
+    vertical-align: middle;
+}
