@@ -1,5 +1,5 @@
 export const SEARCH_BY = {
-    TITLE: 'Title',
+    TITLE: 'title',
     GENRE: 'Genre'
 };
 

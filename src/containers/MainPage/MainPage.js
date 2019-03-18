@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 
-import { BASE_URL, SEARCH_BY } from "../../App.constants";
-import { Header, FilterHeader, MainLayout, NoFilmsFound } from "../../components";
+import { SEARCH_BY } from "../../App.constants";
+import { Header, FilterHeader, MainLayout, Movies } from "../../components";
 import Auxe from '../../hoc/Auxe/Auxe';
+
+import axios from '../../axios';
 
 class MainPage extends Component {
     state = {
         movies: [],
         searchBy: SEARCH_BY.TITLE,
         inputValue: '',
-        isShowSearchButton: false
+        isShowSearchButton: false,
+        limit: 15
     }
 
     handlerSetFilter = (event) => {
@@ -27,10 +30,24 @@ class MainPage extends Component {
     handlerSubmit = (event) => {
         event.preventDefault();
 
+        const moviesData = {
+            params: {
+                search: this.state.inputValue,
+                searchBy: this.state.searchBy,
+                limit: this.state.limit
+            }
+        };
+
         console.log('get data');
-        this.setState({
-            inputValue: ''
-        })
+
+        axios.get('/movies', moviesData)
+            .then( res => {
+                this.setState({
+                    movies: res.data.data
+                });
+                console.log('get data', res);
+            })
+            .catch(error => error);
 
     }
 
@@ -46,7 +63,7 @@ class MainPage extends Component {
                         onSubmitRequest={this.handlerSubmit}/>
                 </Header>
                 <MainLayout>
-                    <NoFilmsFound />
+                    <Movies movies={this.state.movies} />
                 </MainLayout>
             </Auxe>
 

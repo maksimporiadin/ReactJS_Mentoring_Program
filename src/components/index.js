@@ -4,3 +4,4 @@ export { MainLayout } from './MainLayout/MainLayout';
 export { NoFilmsFound } from './NoFilmsFound/NoFilmsFound';
 export { NotFound } from './NotFound/NotFound';
 export { FilterHeader } from './FilterHeader/FilterHeader';
+export { Movies } from './Movies/Movies';
