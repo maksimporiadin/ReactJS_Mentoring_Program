@@ -4,14 +4,15 @@ import { Button, Logo } from '../UI';
 
 import './header.css';
 
-export const Header = ({ isShowSearchBtn, children }) => (
+export const Header = ({ isShowSearchButton, children }) => (
     <header className="header">
         <div className="header-logo">
             <Logo/>
             {
-                isShowSearchBtn &&
-                <Button class="header-search-button"
-                        onClick={() => window.location = '/'}>
+                isShowSearchButton &&
+                <Button
+                    className="btn-primary header-search-button"
+                    onClick={() => window.location = '/'} >
                     Search
                 </Button>
             }

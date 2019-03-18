@@ -3,20 +3,14 @@
     background: #414141;
     width: 100%;
     margin: 0 auto;
-    padding: 15px;
+    padding: 15px 50px;
 }
 
 .header-logo {
-    margin: 0 50px;
     justify-content: space-between;
     display: flex;
 }
 
 .header-search-button {
-    border-radius: 0;
-    color: red;
-    background: white;
-    padding: 5px 20px;
-    font-weight: bold;
-    text-transform: uppercase;
+    line-height: 0;
 }

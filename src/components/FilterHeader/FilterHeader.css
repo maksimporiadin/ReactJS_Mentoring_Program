@@ -1,6 +1,5 @@
 .filter {
     margin-top: 20px;
-    padding: 0 40px;
 }
 
 .filter-input {
@@ -8,4 +7,13 @@
     border-radius: 0;
     border-bottom: 2px solid #F55362;
     color: white;
+}
+
+.filter-title {
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 30px;
+}
+.filter-button {
+    padding: 0 50px;
 }

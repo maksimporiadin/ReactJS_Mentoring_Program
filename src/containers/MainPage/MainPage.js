@@ -8,7 +8,8 @@ class MainPage extends Component {
     state = {
         movies: [],
         searchBy: SEARCH_BY.TITLE,
-        inputValue: ''
+        inputValue: '',
+        isShowSearchButton: false
     }
 
     handlerSetFilter = (event) => {
@@ -17,13 +18,32 @@ class MainPage extends Component {
         })
     }
 
+    handlerSetSearchBy = (event) => {
+        this.setState({
+            searchBy: event.target.value
+        })
+    }
+
+    handlerSubmit = (event) => {
+        event.preventDefault();
+
+        console.log('get data');
+        this.setState({
+            inputValue: ''
+        })
+
+    }
+
     render() {
         return (
             <Auxe>
-                <Header isShowSearchButton="false">
+                <Header isShowSearchButton={this.state.isShowSearchButton}>
                     <FilterHeader
                         searchBy={this.state.searchBy}
-                        onFilterChange={this.handlerSetFilter}/>
+                        inputValue={this.state.inputValue}
+                        onFilterChange={this.handlerSetFilter}
+                        onChangeSearchBy={this.handlerSetSearchBy}
+                        onSubmitRequest={this.handlerSubmit}/>
                 </Header>
                 <MainLayout>
                     <NoFilmsFound />
