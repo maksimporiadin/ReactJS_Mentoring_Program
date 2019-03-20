@@ -1,7 +1,7 @@
 .main-layout-container {
     max-width: 1924px;
+    min-width: 600px;
     margin: 0 auto;
-    padding-top: 40px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;

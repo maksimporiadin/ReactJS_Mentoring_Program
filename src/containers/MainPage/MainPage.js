@@ -4,6 +4,7 @@ import { SEARCH_BY, SORT_BY } from "../../App.constants";
 import { Header, FilterHeader, MainLayout, Movies, InformPanel, SortBy } from "../../components";
 import { Spinner } from "../../components/UI";
 import Auxe from '../../hoc/Auxe/Auxe';
+import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
 import MoviesInform from './MoviesInform/MoviesInform';
 
 import axios from '../../axios';
@@ -75,15 +76,7 @@ class MainPage extends Component {
                     isLoading: false,
                     total: res.data.total
                 });
-                console.log('get data', res);
             })
-            .catch(error => {
-                this.setState({
-                    isLoading: false
-                });
-
-                return error;
-            });
 
     }
 
@@ -118,5 +111,5 @@ class MainPage extends Component {
 
 }
 
-export default MainPage;
+export default WithErrorHandler(MainPage, axios);
 
