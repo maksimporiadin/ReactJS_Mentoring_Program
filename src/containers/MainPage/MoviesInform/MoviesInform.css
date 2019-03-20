@@ -1,0 +1,9 @@
+.moviesInform {
+    display: flex;
+    justify-content: space-between;
+}
+
+.moviesInform__count {
+    display: flex;
+    align-items: center;
+}

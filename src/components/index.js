@@ -5,3 +5,5 @@ export { NoFilmsFound } from './NoFilmsFound/NoFilmsFound';
 export { NotFound } from './NotFound/NotFound';
 export { FilterHeader } from './FilterHeader/FilterHeader';
 export { Movies } from './Movies/Movies';
+export { InformPanel } from './InformPanel/InformPanel';
+export { SortBy } from './SortBy/SortBy';
