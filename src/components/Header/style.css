@@ -9,6 +9,7 @@
 .header-logo {
     justify-content: space-between;
     display: flex;
+    margin-bottom: 20px;
 }
 
 .header-search-button {

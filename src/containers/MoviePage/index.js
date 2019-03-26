@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { SEARCH_BY, SORT_BY } from "../../App.constants";
-import { Header, MainLayout, Movies, InformPanel } from "../../components";
+import { Header, MainLayout, Movies, InformPanel, MovieDetails } from "../../components";
 import { Spinner } from "../../components/UI";
 import api from "../../api";
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
@@ -15,7 +15,8 @@ class MoviePage extends Component {
         movies: [],
         movie: {},
         isShowSearchButton: true,
-        isLoading: false
+        isLoading: false,
+        isMovieLoaded: false
     }
 
     componentDidMount() {
@@ -58,6 +59,7 @@ class MoviePage extends Component {
                 this.setState({
                     movie: res.data,
                     isLoading: false,
+                    isMovieLoaded: true
                 });
             });
     }
@@ -66,10 +68,14 @@ class MoviePage extends Component {
         return (
             <MainLayout>
                 <Header isShowSearchButton={this.state.isShowSearchButton}>
+                    {
+                        this.state.isMovieLoaded &&
+                        <MovieDetails movie={this.state.movie}/>
+                    }
                 </Header>
                 < InformPanel>
                     {
-                        this.state.movie.genres &&
+                        this.state.isMovieLoaded &&
                         <div>{`Films by ${this.state.movie.genres.join(' & ')} genre`}</div>
                     }
                 </InformPanel>
