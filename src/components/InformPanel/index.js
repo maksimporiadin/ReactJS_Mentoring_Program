@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './InformPanel.css';
+import './style.css';
 
 export const InformPanel = ({ children }) => (
     <div className="informPanel">

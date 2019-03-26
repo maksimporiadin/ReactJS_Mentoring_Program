@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SORT_BY } from '../../App.constants';
 
-import './SortBy.css';
+import './style.css';
 
 export const SortBy = ({ sortBy, onChange }) => (
     <div className="sortBy" onChange={onChange}>

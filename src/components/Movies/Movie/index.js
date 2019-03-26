@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-import './Movie.css';
+import './style.css';
 
 const Movie = ({ movie }) => (
     <div className="movie-container">

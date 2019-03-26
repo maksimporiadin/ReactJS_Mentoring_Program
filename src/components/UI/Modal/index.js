@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import Auxe from '../../../hoc/Auxe/Auxe';
-import './Modal.css';
-import Backdrop from './Backdrop/Backdrop';
+import './style.css';
+import Backdrop from './Backdrop';
 
 class Modal extends Component {
     shouldComponentUpdate(nextProps, nextState) {

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Input, Button } from "../UI";
-import SearchParam from './SearchParam/SearchParam';
-import './FilterHeader.css';
+import { Input, Button } from '../UI';
+import SearchParam from './SearchParam';
+import './style.css';
 
 export const FilterHeader = ( {searchBy, inputValue, onFilterChange, onChangeSearchBy, onSubmitRequest} ) => {
     const inputConfig = {

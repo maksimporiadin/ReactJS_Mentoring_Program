@@ -1,9 +1,8 @@
 import React from 'react';
 
-import Movie from './Movie/Movie';
+import './style.css';
+import Movie from './Movie';
 import { NoFilmsFound } from '../';
-
-import './Movies.css';
 
 export const Movies = ({ movies }) => (
     <div className="movies-container">

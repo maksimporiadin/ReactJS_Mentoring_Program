@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './notFound.css';
+import './style.css';
 
 import { Button } from '../UI';
 

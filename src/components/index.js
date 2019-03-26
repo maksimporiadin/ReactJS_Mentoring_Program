@@ -1,9 +1,9 @@
-export { Footer } from './Footer/Footer';
-export { Header } from './Header/Header';
-export { MainLayout } from './MainLayout/MainLayout';
-export { NoFilmsFound } from './NoFilmsFound/NoFilmsFound';
-export { NotFound } from './NotFound/NotFound';
-export { FilterHeader } from './FilterHeader/FilterHeader';
-export { Movies } from './Movies/Movies';
-export { InformPanel } from './InformPanel/InformPanel';
-export { SortBy } from './SortBy/SortBy';
+export { Footer } from './Footer';
+export { default as Header } from './Header';
+export { MainLayout } from './MainLayout';
+export { NoFilmsFound } from './NoFilmsFound';
+export { NotFound } from './NotFound';
+export { FilterHeader } from './FilterHeader';
+export { Movies } from './Movies';
+export { InformPanel } from './InformPanel';
+export { SortBy } from './SortBy';

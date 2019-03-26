@@ -1,5 +1,5 @@
 import React from 'react';
-import './Backdrop.css';
+import './style.css';
 
 const Backdrop = (props) => (
     props.show ? <div className="backdrop" onClick={props.close}></div> : null

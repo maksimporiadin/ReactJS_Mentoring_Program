@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Footer } from '../';
 
-import './mainLayout.css';
+import './style.css';
 
 export const MainLayout = ({ children }) => (
     <div className="main-layout-container">

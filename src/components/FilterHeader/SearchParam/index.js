@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { SEARCH_BY } from '../../../App.constants';
 
-import './SearchParam.css';
+import './style.css';
 
 const SearchParam = ({ searchBy, onChange, children}) => (
     <div className="searchParam" onChange={onChange}>

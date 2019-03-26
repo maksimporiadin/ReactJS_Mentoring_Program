@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import { SEARCH_BY, SORT_BY } from "../../App.constants";
 import { Header, FilterHeader, MainLayout, Movies, InformPanel, SortBy } from "../../components";
 import { Spinner } from "../../components/UI";
-import Auxe from '../../hoc/Auxe/Auxe';
+import api from "../../api";
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
-import MoviesInform from './MoviesInform/MoviesInform';
+import MoviesInform from './MoviesInform';
 
 import axios from '../../axios';
 
@@ -69,7 +69,7 @@ class MainPage extends Component {
             }
         };
 
-        axios.get('/movies', moviesData)
+        api.getMovies(moviesData)
             .then( res => {
                 this.setState({
                     movies: res.data.data,
@@ -77,34 +77,32 @@ class MainPage extends Component {
                     total: res.data.total
                 });
             })
+            .then(() => this.sortingMovies());
 
     }
 
     render() {
         return (
-            <Auxe>
-                <MainLayout>
-                    <Header isShowSearchButton={this.state.isShowSearchButton}>
-                        <FilterHeader
-                            searchBy={this.state.searchBy}
-                            inputValue={this.state.inputValue}
-                            onFilterChange={this.handlerSetFilter}
-                            onChangeSearchBy={this.handlerSetSearchBy}
-                            onSubmitRequest={this.handlerSubmit} />
-                    </Header>
-                    < InformPanel>
-                        <MoviesInform
-                            count={this.state.total} >
+            <MainLayout>
+                <Header isShowSearchButton={this.state.isShowSearchButton}>
+                    <FilterHeader
+                        searchBy={this.state.searchBy}
+                        inputValue={this.state.inputValue}
+                        onFilterChange={this.handlerSetFilter}
+                        onChangeSearchBy={this.handlerSetSearchBy}
+                        onSubmitRequest={this.handlerSubmit} />
+                </Header>
+                <InformPanel>
+                    <MoviesInform
+                        count={this.state.total} >
 
-                            <SortBy
-                                sortBy={this.state.sortBy}
-                                onChange={this.handlerSetSortBy} />
-                        </MoviesInform>
-                    </InformPanel>
-                    { this.state.isLoading ? <Spinner /> : <Movies movies={this.state.movies} /> }
-                </MainLayout>
-            </Auxe>
-
+                        <SortBy
+                            sortBy={this.state.sortBy}
+                            onChange={this.handlerSetSortBy} />
+                    </MoviesInform>
+                </InformPanel>
+                { this.state.isLoading ? <Spinner /> : <Movies movies={this.state.movies} /> }
+            </MainLayout>
         );
     }
 

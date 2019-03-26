@@ -1,22 +1,32 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router';
 
 import './styles/normalize.css';
 import './styles/custom.css';
 
-import { Button, Input, Logo } from './components/UI';
-import {  NotFound, NoFilmsFound, Header, MainLayout } from './components';
-import Auxe from './hoc/Auxe/Auxe';
-import MainPage from './containers/MainPage/MainPage';
+import MainPage from './containers/MainPage';
+import MoviePage from './containers/MoviePage';
 
 class App extends Component {
     render() {
         return (
-            <Auxe>
-                <MainPage />
-            </Auxe>
+            <Switch>
+                <Route
+                    exact
+                    component={MainPage}
+                    path='/movies'
+                />
+                <Route
+                    exact
+                    component={MoviePage}
+                    path='/movies/:movieId'
+                />
+                <Route path='/'
+                       render={() => <Redirect to='/movies'/>}
+                />
+            </Switch>
         );
     }
 }
 
-export default App;
+export default withRouter(App);
