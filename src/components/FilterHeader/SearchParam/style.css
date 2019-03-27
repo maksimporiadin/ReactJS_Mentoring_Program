@@ -1,0 +1,30 @@
+.searchParam {
+    padding: 15px 0;
+    color: white;
+    display: flex;
+    flex-flow: row;
+    align-items: baseline;
+    align-content: space-between;
+}
+
+.searchParam-title {
+    color: white;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 0 20px;
+}
+
+.searchParam-input {
+    padding: 0 20px;
+    margin-right: 20px;
+}
+
+.searchParam-input input {
+    display: none;
+}
+
+.searchParam-grow {
+    flex-grow:1;
+    text-align:center
+}
+

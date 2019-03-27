@@ -1,0 +1,19 @@
+.filter {
+    margin-top: 20px;
+}
+
+.filter-input {
+    background: transparent;
+    border-radius: 0;
+    border-bottom: 2px solid #F55362;
+    color: white;
+}
+
+.filter-title {
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 30px;
+}
+.filter-button {
+    padding: 0 50px;
+}

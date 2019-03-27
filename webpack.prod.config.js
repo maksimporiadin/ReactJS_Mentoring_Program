@@ -3,13 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     mode: 'production',
     devtool: 'cheap-module-source-map',
-    entry: [
-        './src/index.js'
-    ],
+    entry: ['babel-regenerator-runtime', './src/index.js'],
     output: {
         path: path.join(__dirname, 'build'),
         filename: '[chunkhash].js',
@@ -87,5 +86,6 @@ module.exports = {
                 js: ['bundle.js'],
             },
         }),
+        new ExtractTextPlugin("styles.css")
     ]
 };

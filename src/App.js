@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router';
 
-import AddPerson from './containers/AddPerson/AddPerson';
-import "./index.css";
+import './styles/normalize.css';
+import './styles/custom.css';
+
+import MainPage from './containers/MainPage';
+import MoviePage from './containers/MoviePage';
 
 class App extends Component {
     render() {
-        const title = React.createElement("h1", null, "Hello dear friend!");
-
         return (
-            <div className="App">
-                <div>
-                    <Link to="/"> Greading </Link> |
-                    <Link to="/users"> Results </Link>
-                </div>
-
-                <Route path="/" exact render={() => title} />
-                <Route path="/users" exact component={AddPerson} />
-
-            </div>
+            <Switch>
+                <Route
+                    exact
+                    component={MainPage}
+                    path='/movies'
+                />
+                <Route
+                    exact
+                    component={MoviePage}
+                    path='/movies/:movieId'
+                />
+                <Route path='/'
+                       render={() => <Redirect to='/movies'/>}
+                />
+            </Switch>
         );
     }
 }
 
-export default App;
+export default withRouter(App);

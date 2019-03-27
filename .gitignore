@@ -1,3 +1,7 @@
+* IDE
+/.idea
+.idea
+
 node_modules
 /build
-/.idea
+/coverage
