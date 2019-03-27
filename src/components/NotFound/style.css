@@ -1,0 +1,7 @@
+.notFound-container {
+    font-weight: bold;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: red;
+    margin-top: 50px;
+}

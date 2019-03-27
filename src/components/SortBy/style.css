@@ -1,0 +1,7 @@
+.sortBy-input {
+    cursor: pointer;
+}
+
+.sortBy-input input{
+    display: none;
+}
