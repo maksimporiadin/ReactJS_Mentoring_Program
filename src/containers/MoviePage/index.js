@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import { SEARCH_BY, SORT_BY } from "../../App.constants";
 import { Header, MainLayout, Movies, InformPanel, MovieDetails } from "../../components";
 import { Spinner } from "../../components/UI";
 import api from "../../api";
@@ -31,46 +30,28 @@ class MoviePage extends Component {
         }
     }
 
-    uploadMovies()  {
-        this.setState({
-            isLoading: true
-        });
+    async uploadMovies()  {
+        this.setState({ isLoading: true });
 
-        const moviesData = {};
+        const response = await api.getMovies({});
 
-        api.getMovies(moviesData)
-            .then( res => {
-                this.setState({
-                    movies: res.data.data,
-                    isLoading: false,
-                });
-            });
+        this.setState({ movies: response.data.data, isLoading: false });
     }
 
-    uploadMovie = () => {
-        this.setState({
-            isLoading: true
-        });
-
+    async uploadMovie() {
         const moviesData = this.props.match.params.movieId;
+        const response = await api.getMovie(moviesData);
 
-        api.getMovie(moviesData)
-            .then( res => {
-                this.setState({
-                    movie: res.data,
-                    isLoading: false,
-                    isMovieLoaded: true
-                });
-            });
+        this.setState({ movie: response.data, isMovieLoaded: true });
     }
 
     render() {
         return (
             <MainLayout>
-                <Header isShowSearchButton={this.state.isShowSearchButton}>
+                <Header isShowSearchButton={ this.state.isShowSearchButton }>
                     {
                         this.state.isMovieLoaded &&
-                        <MovieDetails movie={this.state.movie}/>
+                        <MovieDetails movie={ this.state.movie }/>
                     }
                 </Header>
                 < InformPanel>
@@ -79,7 +60,7 @@ class MoviePage extends Component {
                         <div>{`Films by ${this.state.movie.genres.join(' & ')} genre`}</div>
                     }
                 </InformPanel>
-                { this.state.isLoading ? <Spinner /> : <Movies movies={this.state.movies} /> }
+                { this.state.isLoading ? <Spinner /> : <Movies movies={ this.state.movies } /> }
             </MainLayout>
         );
     }

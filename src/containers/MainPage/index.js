@@ -31,36 +31,30 @@ class MainPage extends Component {
         const sort = this.state.sortBy;
         const sortedMovies = this.state.movies.concat().sort((a, b) => a[sort] < b[sort] ? 1 : -1);
 
-        this.setState({
-            movies: sortedMovies
-        })
+        this.setState({ movies: sortedMovies });
     }
 
     handlerSetFilter = (event) => {
-        this.setState({
-            inputValue: event.target.value
-        })
+        this.setState({ inputValue: event.target.value });
     }
 
     handlerSetSearchBy = (event) => {
-        this.setState({
-            searchBy: event.target.value
-        })
+        this.setState({ searchBy: event.target.value });
     }
 
     handlerSetSortBy = (event) => {
-        this.setState({
-            sortBy: event.target.value
-        })
+        this.setState({ sortBy: event.target.value });
     }
 
     handlerSubmit = (event) => {
         event.preventDefault();
 
-        this.setState({
-            isLoading: true
-        });
+        this.setState({ isLoading: true });
 
+        this.getMovies();
+    }
+
+    async getMovies() {
         const moviesData = {
             params: {
                 search: this.state.inputValue,
@@ -69,16 +63,14 @@ class MainPage extends Component {
             }
         };
 
-        api.getMovies(moviesData)
-            .then( res => {
-                this.setState({
-                    movies: res.data.data,
-                    isLoading: false,
-                    total: res.data.total
-                });
-            })
-            .then(() => this.sortingMovies());
+        try {
+            const responce = await api.getMovies(moviesData);
 
+            this.setState({ movies: responce.data.data, isLoading: false, total: responce.data.total });
+            this.sortingMovies();
+        } catch (err) {
+            this.setState({ isLoading: false });
+        }
     }
 
     render() {
