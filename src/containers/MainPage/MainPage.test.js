@@ -2,6 +2,7 @@ import 'jsdom-global/register';
 import React from 'react';
 
 import MainPage from './MainPage';
+import api from '../../api';
 
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, configure } from 'enzyme';
@@ -13,7 +14,12 @@ describe('MainPage', () => {
 
     beforeEach(()=>{
         jest.resetAllMocks();
-        wrapper = shallow(<MainPage />)
+        wrapper = shallow(<MainPage />);
+        jest.mock('../../api/index.js', () =>  {
+            return { getMovies: Promise.resolve({data: { data: {movies: []}, limit: 10, total: 0}}) };
+            }
+        );
+        jest.useFakeTimers();
     });
 
     it('handlerSetFilter method test', function () {
@@ -47,6 +53,8 @@ describe('MainPage', () => {
 
     it('handlerSubmit method test', function () {
         const MockEventValue = { preventDefault: () => {} };
+
+        jest.runAllTimers();
 
         wrapper.instance().handlerSubmit(MockEventValue);
         expect(wrapper.state('isLoading')).toBe(true);

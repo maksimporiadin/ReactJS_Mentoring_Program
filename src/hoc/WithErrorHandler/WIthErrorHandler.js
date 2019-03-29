@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Auxe from '../Auxe/Auxe';
 import { Modal }  from '../../components/UI';
 
 const WithErrorHandler = (WrappedComponent, axios) => {
@@ -29,14 +28,14 @@ const WithErrorHandler = (WrappedComponent, axios) => {
 
         render () {
             return (
-                <Auxe>
+                <React.Fragment>
                     <Modal
                         show={this.state.error}
                         closeModal={this.errorConfirmedHandler}>
                         {this.state.error ? this.state.error.message : null}
                     </Modal>
                     <WrappedComponent {...this.props} />
-                </Auxe>
+                </React.Fragment>
             );
         }
     }

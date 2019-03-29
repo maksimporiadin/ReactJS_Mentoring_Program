@@ -1,23 +1,21 @@
 import 'jsdom-global/register';
 import React from 'react';
 
-import MoviePage from './MoviePage';
+import WithErrorHandler from './WithErrorHandler';
 
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, configure } from 'enzyme';
 
 configure({adapter: new Adapter()});
 
-describe('MoviePage', () => {
+describe('WithErrorHandler', () => {
     let wrapper;
     beforeEach(()=>{
         jest.resetAllMocks();
-        wrapper = shallow(<MoviePage />)
-        jest.useFakeTimers();
     });
 
     it('is renders', () => {
-        jest.runAllTimers();
-        expect(wrapper).toMatchSnapshot();
+        wrapper = shallow(<WithErrorHandler />)
+        expect(wrapper).toHaveLength(1);
     });
 });

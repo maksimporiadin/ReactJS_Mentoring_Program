@@ -27,8 +27,8 @@ class Header extends Component {
                         this.props.isShowSearchButton &&
                         <Button
                             className="btn-primary header-search-button"
-                            onClick={ () => this.HandlerOnClick } >
-                            Search
+                            onClick={this.HandlerOnClick}
+                            name="Search">
                         </Button>
                     }
                 </div>

@@ -21,8 +21,7 @@ export const FilterHeader = ( {searchBy, inputValue, onFilterChange, onChangeSea
                 <SearchParam
                     searchBy={searchBy}
                     onChange={onChangeSearchBy} >
-                    <Button className="btn-primary btn-lg filter-button"
-                         >SEARCH</Button>
+                    <Button className="btn-primary btn-lg filter-button" name="SEARCH"></Button>
                 </SearchParam>
             </form>
         </div>

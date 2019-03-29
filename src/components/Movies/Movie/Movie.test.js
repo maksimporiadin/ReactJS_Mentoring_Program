@@ -1,23 +1,31 @@
 import 'jsdom-global/register';
 import React from 'react';
 
-import MoviePage from './MoviePage';
+import Movie from './index';
 
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, configure } from 'enzyme';
 
 configure({adapter: new Adapter()});
 
-describe('MoviePage', () => {
+describe('Movie', () => {
     let wrapper;
+    const defaultProps = {
+        movie: {
+            poster_path: 'https://movie.url',
+            title: 'title',
+            genres: ['genre1', 'genre2'],
+            release_date: '2014_12_12',
+            id: 124,
+        }
+    };
+
     beforeEach(()=>{
         jest.resetAllMocks();
-        wrapper = shallow(<MoviePage />)
-        jest.useFakeTimers();
+        wrapper = shallow(<Movie {...defaultProps} />)
     });
 
     it('is renders', () => {
-        jest.runAllTimers();
         expect(wrapper).toMatchSnapshot();
     });
 });
