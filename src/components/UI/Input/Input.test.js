@@ -1,12 +1,7 @@
 import 'jsdom-global/register';
 import React from 'react';
-
 import { Input } from './index';
-
-import Adapter from 'enzyme-adapter-react-16';
-import { shallow, configure } from 'enzyme';
-
-configure({adapter: new Adapter()});
+import { shallow } from 'enzyme';
 
 describe('Input', () => {
     let wrapper;

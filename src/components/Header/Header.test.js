@@ -1,12 +1,7 @@
 import 'jsdom-global/register';
 import React from 'react';
-
 import Header from './index';
-
-import Adapter from 'enzyme-adapter-react-16';
-import { shallow, configure } from 'enzyme';
-
-configure({adapter: new Adapter()});
+import { shallow } from 'enzyme';
 
 describe('Header', () => {
     let wrapper;
@@ -17,7 +12,7 @@ describe('Header', () => {
     });
 
     it('is renders', () => {
-        expect(wrapper).toHaveLength(1);
+        expect(wrapper).toMatchSnapshot();
     });
 
     it('HandlerOnClick test', () => {

@@ -1,12 +1,7 @@
 import 'jsdom-global/register';
 import React from 'react';
-
-import WithErrorHandler from './WithErrorHandler';
-
-import Adapter from 'enzyme-adapter-react-16';
-import { shallow, configure } from 'enzyme';
-
-configure({adapter: new Adapter()});
+import WithErrorHandler from './index';
+import { shallow } from 'enzyme';
 
 describe('WithErrorHandler', () => {
     let wrapper;
@@ -16,6 +11,6 @@ describe('WithErrorHandler', () => {
 
     it('is renders', () => {
         wrapper = shallow(<WithErrorHandler />)
-        expect(wrapper).toHaveLength(1);
+        expect(wrapper).toMatchSnapshot();
     });
 });

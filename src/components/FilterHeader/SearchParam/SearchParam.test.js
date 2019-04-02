@@ -2,17 +2,17 @@ import 'jsdom-global/register';
 import React from 'react';
 
 import SearchParam from './index';
-
-import Adapter from 'enzyme-adapter-react-16';
-import { shallow, configure } from 'enzyme';
-
-configure({adapter: new Adapter()});
+import { shallow } from 'enzyme';
 
 describe('SearchParam', () => {
     let wrapper;
+    const defaultProps = {
+        searchBy() {},
+        onChange() {}
+    };
 
     it('is renders', () => {
-        wrapper = shallow(<SearchParam  />)
-        expect(wrapper).toHaveLength(1);
+        wrapper = shallow(<SearchParam {...defaultProps} />)
+        expect(wrapper).toMatchSnapshot();
     });
 });

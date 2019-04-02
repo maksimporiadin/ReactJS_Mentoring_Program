@@ -1,13 +1,8 @@
 import 'jsdom-global/register';
 import React from 'react';
-
 import MainPage from './MainPage';
 import api from '../../api';
-
-import Adapter from 'enzyme-adapter-react-16';
-import { shallow, configure } from 'enzyme';
-
-configure({adapter: new Adapter()});
+import { shallow } from 'enzyme';
 
 describe('MainPage', () => {
     let wrapper;
