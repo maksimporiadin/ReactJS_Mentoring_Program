@@ -7,10 +7,17 @@ describe('WithErrorHandler', () => {
     let wrapper;
     beforeEach(()=>{
         jest.resetAllMocks();
+        wrapper = shallow(<WithErrorHandler />)
     });
 
     it('is renders', () => {
-        wrapper = shallow(<WithErrorHandler />)
         expect(wrapper).toMatchSnapshot();
+    });
+
+    it('errorConfirmedHandler method test', function () {
+        wrapper.setState({ error : true });
+
+        wrapper.instance().errorConfirmedHandler();
+        expect(wrapper.state('error')).toBe(null);
     });
 });
