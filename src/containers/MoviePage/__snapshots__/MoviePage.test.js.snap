@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoviePage is renders 1`] = `
+<MainLayout>
+  <Header
+    isShowSearchButton={true}
+  />
+  <InformPanel />
+  <Spinner />
+</MainLayout>
+`;

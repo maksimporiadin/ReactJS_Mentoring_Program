@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchParam is renders 1`] = `
+<div
+  className="searchParam"
+  onChange={[Function]}
+>
+  <span
+    className="searchParam-title"
+  >
+    Search By
+  </span>
+  <label
+    className="btn btn-secondary btn-sm searchParam-input"
+    htmlFor="search-title"
+  >
+    <input
+      defaultChecked={false}
+      id="search-title"
+      name="search"
+      type="radio"
+      value="title"
+    />
+     
+    Title
+  </label>
+  <label
+    className="btn btn-secondary btn-sm searchParam-input"
+    htmlFor="search-genre"
+  >
+    <input
+      defaultChecked={false}
+      id="search-genre"
+      name="search"
+      type="radio"
+      value="genre"
+    />
+     
+    Genre
+  </label>
+  <div
+    className="searchParam-grow"
+  />
+</div>
+`;

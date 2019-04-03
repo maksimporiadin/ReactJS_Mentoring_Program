@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal is renders with show: false 1`] = `
+<Fragment>
+  <Backdrop
+    close={[Function]}
+    show={false}
+  />
+  <div
+    className="modal-custom"
+    onClick={[Function]}
+    style={
+      Object {
+        "opacity": "0",
+        "transform": "translateY(-100vh)",
+      }
+    }
+  />
+</Fragment>
+`;
+
+exports[`Modal is renders with show: true 1`] = `
+<Fragment>
+  <Backdrop
+    close={[Function]}
+    show={true}
+  />
+  <div
+    className="modal-custom"
+    onClick={[Function]}
+    style={
+      Object {
+        "opacity": "1",
+        "transform": "translateY(0)",
+      }
+    }
+  />
+</Fragment>
+`;
