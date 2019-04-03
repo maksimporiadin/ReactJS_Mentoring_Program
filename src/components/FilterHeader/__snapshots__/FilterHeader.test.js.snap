@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterHeader is renders 1`] = `
+<div
+  className="filter"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <h2
+      className="filter-title"
+    >
+      Find your movie
+    </h2>
+    <Input
+      className="form-control filter-input"
+      inputConfig={
+        Object {
+          "placeholder": "Enter please search by title",
+          "value": "X-Men",
+        }
+      }
+      onChange={[Function]}
+    />
+    <SearchParam
+      onChange={[Function]}
+      searchBy="title"
+    >
+      <Button
+        className="btn-primary btn-lg filter-button"
+        name="SEARCH"
+      />
+    </SearchParam>
+  </form>
+</div>
+`;

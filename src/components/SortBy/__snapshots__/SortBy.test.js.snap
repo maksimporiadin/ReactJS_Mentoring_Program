@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SortBy is renders with release_date 1`] = `
+<div
+  className="sortBy"
+  onChange={[Function]}
+>
+  <span
+    className="sortBy-release-date"
+  >
+    SORT BY: 
+  </span>
+  <label
+    className="btn btn-outline-primary sortBy-input"
+    htmlFor="sort-release-date"
+  >
+    <input
+      defaultChecked={true}
+      id="sort-release-date"
+      name="sort"
+      type="radio"
+      value="release_date"
+    />
+     
+    release date
+  </label>
+  <label
+    className="btn btn-outline-secondary sortBy-input"
+    htmlFor="sort-rating"
+  >
+    <input
+      defaultChecked={false}
+      id="sort-rating"
+      name="sort"
+      type="radio"
+      value="vote_average"
+    />
+     
+    rating
+  </label>
+</div>
+`;
+
+exports[`SortBy is renders with vote_average 1`] = `
+<div
+  className="sortBy"
+  onChange={[Function]}
+>
+  <span
+    className="sortBy-release-date"
+  >
+    SORT BY: 
+  </span>
+  <label
+    className="btn btn-outline-secondary sortBy-input"
+    htmlFor="sort-release-date"
+  >
+    <input
+      defaultChecked={false}
+      id="sort-release-date"
+      name="sort"
+      type="radio"
+      value="release_date"
+    />
+     
+    release date
+  </label>
+  <label
+    className="btn btn-outline-primary sortBy-input"
+    htmlFor="sort-rating"
+  >
+    <input
+      defaultChecked={true}
+      id="sort-rating"
+      name="sort"
+      type="radio"
+      value="vote_average"
+    />
+     
+    rating
+  </label>
+</div>
+`;

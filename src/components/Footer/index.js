@@ -4,7 +4,7 @@ import { Logo } from '../UI';
 import './style.css';
 
 export const Footer = () => (
-    <footer className="footer">
+    <footer className="footer12">
         <Logo />
     </footer>
 );

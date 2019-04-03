@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WithErrorHandler is renders 1`] = `
+<Fragment>
+  <Modal
+    closeModal={[Function]}
+    show={null}
+  />
+  <MainPage />
+</Fragment>
+`;

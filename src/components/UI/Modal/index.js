@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import Auxe from '../../../hoc/Auxe/Auxe';
 import './style.css';
 import Backdrop from './Backdrop';
 
@@ -11,7 +10,7 @@ class Modal extends Component {
 
     render () {
         return (
-            <Auxe>
+            <React.Fragment>
                 <Backdrop show={this.props.show} close={this.props.closeModal}/>
                 <div
                     className="modal-custom"
@@ -22,7 +21,7 @@ class Modal extends Component {
                      }}>
                     {this.props.children}
                 </div>
-            </Auxe>
+            </React.Fragment>
         )
     }
 }

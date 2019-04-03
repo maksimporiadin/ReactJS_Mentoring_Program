@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movies is renders without movies 1`] = `
+<div
+  className="movies-container"
+>
+  <NoFilmsFound />
+</div>
+`;
+
+exports[`Movies is renders without movies 2`] = `
+<div
+  className="movies-container"
+>
+  <Movie
+    key="0"
+    movie={
+      Object {
+        "id": 1,
+        "movie": Object {},
+      }
+    }
+  />
+</div>
+`;

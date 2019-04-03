@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer is renders 1`] = `
+<footer
+  className="footer12"
+>
+  <Logo />
+</footer>
+`;

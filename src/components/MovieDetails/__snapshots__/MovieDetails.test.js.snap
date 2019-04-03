@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieDetails is renders 1`] = `
+<div
+  className="movie-details-container"
+>
+  <div
+    className="movie-details-poster"
+  >
+    <img
+      alt="title"
+      className="movie-details-img"
+      src="https://movie.url"
+    />
+  </div>
+  <div
+    className="movie-details-inform"
+  >
+    <h1
+      className="movie-details-title"
+    >
+      title
+    </h1>
+    <h5>
+      This good movie
+    </h5>
+    <div
+      className="movie-details-tracks"
+    >
+      <span>
+        2014
+      </span>
+      <span>
+        124
+         min
+      </span>
+    </div>
+    <div>
+      Nice movie
+    </div>
+  </div>
+</div>
+`;

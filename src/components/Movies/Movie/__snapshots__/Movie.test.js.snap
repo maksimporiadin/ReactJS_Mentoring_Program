@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movie is renders 1`] = `
+<div
+  className="movie-container"
+>
+  <div
+    className="movie-content"
+  >
+    <img
+      alt="title"
+      className="movie-poster"
+      src="https://movie.url"
+    />
+    <div
+      className="movie-description-content"
+    >
+      <div
+        className="movie-description-link"
+      >
+        <Link
+          replace={false}
+          to="/movies/124"
+        >
+          title
+        </Link>
+      </div>
+      <div
+        className="movie-description-date"
+      >
+        <span>
+          2014
+        </span>
+      </div>
+      <div
+        className="movie-description-gentes"
+      >
+        genre1 & genre2 Movie
+      </div>
+    </div>
+  </div>
+</div>
+`;

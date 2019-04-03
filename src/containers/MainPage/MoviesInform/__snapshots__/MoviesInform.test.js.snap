@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoviesInform is renders count 0 1`] = `
+<div
+  className="moviesInform"
+>
+  <div
+    className="moviesInform__count"
+  />
+  <div
+    className="moviesInform__sortBy"
+  />
+</div>
+`;
+
+exports[`MoviesInform is renders count 1 1`] = `
+<div
+  className="moviesInform"
+>
+  <div
+    className="moviesInform__count"
+  >
+    <span>
+       
+      1
+       movie found
+    </span>
+  </div>
+  <div
+    className="moviesInform__sortBy"
+  />
+</div>
+`;
+
+exports[`MoviesInform is renders count default 1`] = `
+<div
+  className="moviesInform"
+>
+  <div
+    className="moviesInform__count"
+  >
+    <span>
+       
+      3
+       movies found
+    </span>
+  </div>
+  <div
+    className="moviesInform__sortBy"
+  />
+</div>
+`;

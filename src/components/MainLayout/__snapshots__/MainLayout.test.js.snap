@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainLayout is renders 1`] = `
+<div
+  className="main-layout-container"
+>
+  <div
+    className="main-layout-content"
+  />
+  <Footer />
+</div>
+`;

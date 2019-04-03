@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound is renders 1`] = `
+<div
+  className="notFound-container"
+>
+  Page doesn\`t Found
+  <Button
+    name="Back to Main Page"
+    onClick={[Function]}
+  />
+</div>
+`;

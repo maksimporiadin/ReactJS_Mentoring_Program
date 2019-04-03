@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Backdrop is renders show: false 1`] = `""`;
+
+exports[`Backdrop is renders show: true 1`] = `
+<div
+  className="backdrop"
+  onClick={[Function]}
+/>
+`;

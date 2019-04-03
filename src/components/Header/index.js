@@ -10,6 +10,10 @@ class Header extends Component {
         isClicked: false
     }
 
+    HandlerOnClick = () => {
+        this.setState({ isClicked: true });
+    }
+
     render () {
         return (
             <header className="header">
@@ -23,8 +27,8 @@ class Header extends Component {
                         this.props.isShowSearchButton &&
                         <Button
                             className="btn-primary header-search-button"
-                            onClick={() => this.setState({ isClicked: true })} >
-                            Search
+                            onClick={this.HandlerOnClick}
+                            name="Search">
                         </Button>
                     }
                 </div>
