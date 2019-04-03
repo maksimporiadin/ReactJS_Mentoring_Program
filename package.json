@@ -58,6 +58,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "enzyme-to-json": "^3.3.5",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-hot-loader": "^4.8.0",
