@@ -8,13 +8,20 @@ describe('MainPage', () => {
     let wrapper;
 
     beforeEach(()=>{
-        jest.resetAllMocks();
-        wrapper = shallow(<MainPage />);
-        jest.mock('../../api/index.js', () =>  {
-            return { getMovies: Promise.resolve({data: { data: {movies: []}, limit: 10, total: 0}}) };
-            }
-        );
-        jest.useFakeTimers();
+        const defaultProps = {
+            loading: false,
+            movies: [],
+            total: 0,
+            searchBy: '',
+            sortBy: '',
+            limit: 10,
+            onGetMovies: jest.fn(),
+            onMoviesChangeSearch: jest.fn(),
+            onMoviesChangeSort: jest.fn(),
+            onSortingMovies: jest.fn(),
+        };
+
+        wrapper = shallow(<MainPage { ...defaultProps } />);
     });
 
     it('handlerSetFilter method test', function () {
@@ -28,31 +35,35 @@ describe('MainPage', () => {
         const MockEventValue = { target: { value: 'title'} };
 
         wrapper.instance().handlerSetSearchBy(MockEventValue);
-        expect(wrapper.state('searchBy')).toBe('title');
+        expect(wrapper.instance().props.onMoviesChangeSearch).toHaveBeenCalledWith('title');
+
     });
 
     it('handlerSetSortBy method test', function () {
         const MockEventValue = { target: { value: 'genre'} };
 
         wrapper.instance().handlerSetSortBy(MockEventValue);
-        expect(wrapper.state('sortBy')).toBe('genre');
-    });
-
-    it('sortingMovies method test', function () {
-        const MockMovies = [{ raiting: 1 },{ raiting: 2 }];
-
-        wrapper.setState({ movies: MockMovies, sortBy: 'raiting'});
-        wrapper.instance().sortingMovies();
-        expect(wrapper.state('movies')[0].raiting).toBe(2);
+        expect(wrapper.instance().props.onMoviesChangeSort).toHaveBeenCalledWith('genre');
     });
 
     it('handlerSubmit method test', function () {
         const MockEventValue = { preventDefault: () => {} };
-
-        jest.runAllTimers();
-
+        wrapper.instance().getMovies = jest.fn();
         wrapper.instance().handlerSubmit(MockEventValue);
-        expect(wrapper.state('isLoading')).toBe(true);
+
+        expect(wrapper.instance().getMovies).toHaveBeenCalled();
     });
 
+    it('getMovies method test', function () {
+        const moviesData = {
+            params: {
+                search: '',
+                searchBy: '',
+                limit: 10
+            }
+        };
+
+        wrapper.instance().getMovies();
+        expect(wrapper.instance().props.onGetMovies).toHaveBeenCalledWith(moviesData);
+    });
 });

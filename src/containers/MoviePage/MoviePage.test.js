@@ -6,13 +6,27 @@ import { shallow } from 'enzyme';
 describe('MoviePage', () => {
     let wrapper;
     beforeEach(()=>{
-        jest.resetAllMocks();
-        wrapper = shallow(<MoviePage />)
-        jest.useFakeTimers();
+        const defaultProps = {
+            match: {
+                params : {
+                    movieId: 12345
+                }
+            },
+            movies: [],
+            movie: {},
+            isLoading: false,
+            onGetMovie: jest.fn()
+        };
+
+        wrapper = shallow(<MoviePage { ...defaultProps }/>);
     });
 
     it('is renders', () => {
-        jest.runAllTimers();
         expect(wrapper).toMatchSnapshot();
+    });
+
+    it('check uploadMovie ', () => {
+        wrapper.instance().uploadMovie();
+        expect(wrapper.instance().props.onGetMovie).toHaveBeenCalled();
     });
 });

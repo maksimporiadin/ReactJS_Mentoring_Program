@@ -6,6 +6,6 @@ exports[`MoviePage is renders 1`] = `
     isShowSearchButton={true}
   />
   <InformPanel />
-  <Spinner />
+  <NoFilmsFound />
 </MainLayout>
 `;

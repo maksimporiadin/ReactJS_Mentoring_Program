@@ -1,7 +1,22 @@
 import MoviePage from './MoviePage';
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
-
 import axios from '../../axios';
+import * as actions from '../../store/actions/index';
+import { connect } from 'react-redux';
 
-export default WithErrorHandler(MoviePage, axios);
+const mapStateToProps = state => {
+    return {
+        isloading: state.movie.isLoading,
+        movie: state.movie.movie,
+        movies: state.movies.movies,
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onGetMovie: (id) => dispatch(actions.getMovie(id))
+    };
+};
+
+export default WithErrorHandler(connect(mapStateToProps, mapDispatchToProps)(MoviePage), axios);
 

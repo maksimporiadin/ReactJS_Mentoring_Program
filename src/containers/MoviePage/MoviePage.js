@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
 
-import { Header, MainLayout, Movies, InformPanel, MovieDetails } from "../../components";
-import { Spinner } from "../../components/UI";
-import api from "../../api";
+import { Header, MainLayout, Movies, InformPanel, MovieDetails, NoFilmsFound } from '../../components';
+import { Spinner } from '../../components/UI';
+import { isEmpty } from '../../shared/utilityMethods';
 
 class MoviePage extends Component {
     state = {
-        movies: [],
-        movie: {},
         isShowSearchButton: true,
-        isLoading: false,
-        isMovieLoaded: false
     }
 
     componentDidMount() {
-        // this.uploadMovies(); will be removed after moving movies data to redux store.
-        this.uploadMovies();
         this.uploadMovie();
     }
 
@@ -25,37 +19,29 @@ class MoviePage extends Component {
         }
     }
 
-    async uploadMovies()  {
-        this.setState({ isLoading: true });
+    uploadMovie() {
+        const id = this.props.match.params.movieId;
 
-        const response = await api.getMovies({});
-
-        this.setState({ movies: response.data.data, isLoading: false });
-    }
-
-    async uploadMovie() {
-        const moviesData = this.props.match.params.movieId;
-        const response = await api.getMovie(moviesData);
-
-        this.setState({ movie: response.data, isMovieLoaded: true });
+        this.props.onGetMovie(id);
     }
 
     render() {
+        const movie = !isEmpty(this.props.movie) ? <MovieDetails movie={ this.props.movie }/> : null;
+
         return (
             <MainLayout>
                 <Header isShowSearchButton={ this.state.isShowSearchButton }>
                     {
-                        this.state.isMovieLoaded &&
-                        <MovieDetails movie={ this.state.movie }/>
+                        this.props.isLoading ? <Spinner /> : movie
                     }
                 </Header>
                 < InformPanel>
                     {
-                        this.state.isMovieLoaded &&
-                        <div>{`Films by ${this.state.movie.genres.join(' & ')} genre`}</div>
+                        !isEmpty(this.props.movie) &&
+                        <div>{`Films by ${this.props.movie.genres.join(' & ')} genre`}</div>
                     }
                 </InformPanel>
-                { this.state.isLoading ? <Spinner /> : <Movies movies={ this.state.movies } /> }
+                { this.props.movies.length ? <Movies movies={ this.props.movies } /> : <NoFilmsFound /> }
             </MainLayout>
         );
     }

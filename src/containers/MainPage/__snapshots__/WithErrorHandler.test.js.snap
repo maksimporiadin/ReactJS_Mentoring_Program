@@ -6,6 +6,6 @@ exports[`WithErrorHandler is renders 1`] = `
     closeModal={[Function]}
     show={null}
   />
-  <MainPage />
+  <Connect(MainPage) />
 </Fragment>
 `;
