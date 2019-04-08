@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
     return {
-        isloading: state.movie.isLoading,
+        isLoading: state.movie.isLoading,
         movie: state.movie.movie,
         movies: state.movies.movies,
     }

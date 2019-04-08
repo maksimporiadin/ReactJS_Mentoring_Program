@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-import { Header, MainLayout, Movies, InformPanel, MovieDetails, NoFilmsFound } from '../../components';
-import { Spinner } from '../../components/UI';
+import { Header, MainLayout, Movies, InformPanel, MovieDetails } from '../../components';
 import { isEmpty } from '../../shared/utilityMethods';
 
 class MoviePage extends Component {
@@ -26,14 +25,10 @@ class MoviePage extends Component {
     }
 
     render() {
-        const movie = !isEmpty(this.props.movie) ? <MovieDetails movie={ this.props.movie }/> : null;
-
         return (
             <MainLayout>
                 <Header isShowSearchButton={ this.state.isShowSearchButton }>
-                    {
-                        this.props.isLoading ? <Spinner /> : movie
-                    }
+                    <MovieDetails movie={ this.props.movie } loading={ this.props.isLoading }/>
                 </Header>
                 < InformPanel>
                     {
@@ -41,7 +36,7 @@ class MoviePage extends Component {
                         <div>{`Films by ${this.props.movie.genres.join(' & ')} genre`}</div>
                     }
                 </InformPanel>
-                { this.props.movies.length ? <Movies movies={ this.props.movies } /> : <NoFilmsFound /> }
+                    <Movies movies={ this.props.movies } />
             </MainLayout>
         );
     }

@@ -1,8 +1,8 @@
 export {
     getMovies,
-    moviesChangeSearch,
-    moviesChangeSort,
-    sortingMovies
+    doMoviesChangeSearchAction,
+    doMoviesChangeSortAction,
+    doSortingMoviesAction
 } from './movies'
 
 export {

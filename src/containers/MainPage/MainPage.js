@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Header, FilterHeader, MainLayout, Movies, InformPanel, SortBy } from "../../components";
-import { Spinner } from "../../components/UI";
 import MoviesInform from './MoviesInform';
 
 class MainPage extends Component {
@@ -65,11 +64,10 @@ class MainPage extends Component {
                             onChange={this.handlerSetSortBy} />
                     </MoviesInform>
                 </InformPanel>
-                { this.props.loading ? <Spinner /> : <Movies movies={this.props.movies} /> }
+                <Movies movies={this.props.movies} loading={this.props.loading} /> }
             </MainLayout>
         );
     }
-
 
 }
 

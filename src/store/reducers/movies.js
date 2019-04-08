@@ -2,6 +2,9 @@ import { updateObject } from '../../shared/utilityMethods';
 import { SEARCH_BY } from "../../App.constants";
 import * as actionTypes from '../actions/actionTypes';
 
+import { handleActions } from 'redux-actions';
+import reduceReducers from 'reduce-reducers';
+
 const initialState = {
     movies: [],
     searchBy: SEARCH_BY.TITLE.value,
@@ -11,54 +14,32 @@ const initialState = {
     isLoading: false
 };
 
-const moviesStart = (state, action) => {
-    return updateObject(state, {error: null, loading: true} );
-};
+const reducers = handleActions({
+        [actionTypes.MOVIES_START]: (state, action) => {
+            return updateObject(state, {error: null, loading: true} );
+        },
+        [actionTypes.MOVIES_SUCCESS]: (state, action) => {
+            return updateObject(state, {
+                loading: false,
+                movies: [...action.payload.movies],
+                total: action.payload.total
+            } );
+        },
+        [actionTypes.MOVIES_FAILED]: (state, action) => {
+            return updateObject(state, { loading: false } );
+        },
+        [actionTypes.MOVIES_CHANGE_SEARCH]: (state, action) => {
+            return updateObject(state, { searchBy: action.payload.search } );
+        },
+        [actionTypes.MOVIES_CHANGE_SORT]: (state, action) => {
+            return updateObject(state, { sortBy: action.payload.sort } );
+        },
+        [actionTypes.SORTING_MOVIES]: (state, action) => {
+            const sortedMovies = action.payload.movies.concat().sort((a, b) => a[action.payload.sort] < b[action.payload.sort] ? 1 : -1);
+            return updateObject(state, { movies: sortedMovies } );
+        }},
+        initialState
+    );
 
-const moviesSuccess = (state, action) => {
-    return updateObject(state, {
-        loading: false,
-        movies: [...action.movies],
-        total: action.total
-    } );
-};
+export default reduceReducers(reducers);
 
-const moviesFailed = (state, action) => {
-    return updateObject(state, {
-        loading: false
-    } );
-};
-
-const moviesChangeSearch = (state, action) => {
-    return updateObject(state, {
-        searchBy: action.searchBy
-    } );
-};
-
-const moviesChangeSort = (state, action) => {
-    return updateObject(state, {
-        sortBy: action.sortBy
-    } );
-};
-
-const sortingMovies = (state, action) => {
-    return updateObject(state, {
-        movies: action.movies
-    } );
-};
-
-
-const reducer = (state = initialState, action) => {
-    switch (action.type) {
-        case actionTypes.MOVIES_START: return moviesStart(state, action);
-        case actionTypes.MOVIES_SUCCESS: return moviesSuccess(state, action);
-        case actionTypes.MOVIES_FAILED: return moviesFailed(state, action);
-        case actionTypes.MOVIES_CHANGE_SEARCH: return moviesChangeSearch(state, action);
-        case actionTypes.MOVIES_CHANGE_SORT: return moviesChangeSort(state, action);
-        case actionTypes.SORTING_MOVIES: return sortingMovies(state, action);
-
-        default: return state;
-    }
-};
-
-export default reducer;

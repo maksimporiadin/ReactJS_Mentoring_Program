@@ -1,36 +1,22 @@
 import * as actionTypes from './actionTypes';
 import api from '../../api/index';
 
-const movieStart = () => {
-    return {
-        type: actionTypes.MOVIE_START
-    };
-};
+import { createAction } from 'redux-actions';
+
+const doMovieStartAction = createAction(actionTypes.MOVIE_START);
+const doMovieFailAction = createAction(actionTypes.MOVIE_FAILED);
+const doMovieSuccessAction = createAction(actionTypes.MOVIE_SUCCESS);
 
 export const getMovie = (id) => {
     return async dispatch => {
-        dispatch(movieStart());
+        dispatch(doMovieStartAction());
 
         try {
             const responce = await api.getMovie(id);
-            dispatch(movieSuccess(responce.data));
+            dispatch(doMovieSuccessAction(responce.data));
         } catch (error){
-            dispatch(movieFailed());
+            dispatch(doMovieFailAction());
             console.log(`request GET: /movie/${id} was fail`);
         }
-
-    };
-};
-
-const movieSuccess = (movie) => {
-    return {
-        type: actionTypes.MOVIE_SUCCESS,
-        movie: movie,
-    };
-};
-
-export const movieFailed = () => {
-    return {
-        type: actionTypes.MOVIE_FAILED
     };
 };

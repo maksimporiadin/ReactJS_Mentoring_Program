@@ -1,36 +1,28 @@
 import { updateObject } from '../../shared/utilityMethods';
 import * as actionTypes from '../actions/actionTypes';
 
+import { handleActions } from 'redux-actions';
+import reduceReducers from 'reduce-reducers';
 
 const initialState = {
     movie: {},
-    isLoading: false,
+    isLoading: true,
 }
 
+const reducers = handleActions({
+    [actionTypes.MOVIE_START]: (state, action) => {
+        return updateObject(state, { isLoading: true } );
+    },
+    [actionTypes.MOVIE_SUCCESS]: (state, action) => {
+        return updateObject(state, {
+            isLoading: false,
+            movie: updateObject(action.payload, {}),
+        } );
+    },
+    [actionTypes.MOVIE_FAILED]: (state, action) => {
+        return updateObject(state, { isLoading: false } );
+    }},
+    initialState
+);
 
-const movieStart = (state, action) => {
-    return updateObject(state, { isLoading: true } );
-};
-
-const movieSuccess = (state, action) => {
-    return updateObject(state, {
-        isLoading: false,
-        movie: updateObject(action.movie, {}),
-    } );
-};
-
-const movieFailed = (state, action) => {
-    return updateObject(state, { isLoading: false } );
-};
-
-const reducer = (state = initialState, action) => {
-    switch (action.type) {
-        case actionTypes.MOVIE_START: return movieStart(state, action);
-        case actionTypes.MOVIE_SUCCESS: return movieSuccess(state, action);
-        case actionTypes.MOVIE_FAILED: return movieFailed(state, action);
-
-        default: return state;
-    }
-};
-
-export default reducer;
+export default reduceReducers(reducers);

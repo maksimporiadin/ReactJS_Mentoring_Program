@@ -19,9 +19,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onGetMovies: (params) => dispatch(actions.getMovies(params)),
-        onMoviesChangeSearch: (search) => dispatch(actions.moviesChangeSearch(search)),
-        onMoviesChangeSort: (sort) => dispatch(actions.moviesChangeSort(sort)),
-        onSortingMovies: (movies, sort) => dispatch(actions.sortingMovies(movies, sort))
+        onMoviesChangeSearch: (search) => dispatch(actions.doMoviesChangeSearchAction({ search })),
+        onMoviesChangeSort: (sort) => dispatch(actions.doMoviesChangeSortAction({ sort })),
+        onSortingMovies: (movies, sort) => dispatch(actions.doSortingMoviesAction({ movies, sort }))
     };
 };
 
