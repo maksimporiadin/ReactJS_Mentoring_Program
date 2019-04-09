@@ -7,7 +7,7 @@ import './style.css';
 
 export const MovieDetails = ({movie, loading}) => {
     if( loading ) {
-        return <Spinner />;
+        return <Spinner color="#414141"/>;
     }
 
     if( isEmpty(movie) ) {

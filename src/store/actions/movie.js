@@ -15,7 +15,7 @@ export const getMovie = (id) => {
             const responce = await api.getMovie(id);
             dispatch(doMovieSuccessAction(responce.data));
         } catch (error){
-            dispatch(doMovieFailAction());
+            dispatch(doMovieFailAction({ error }));
             console.log(`request GET: /movie/${id} was fail`);
         }
     };

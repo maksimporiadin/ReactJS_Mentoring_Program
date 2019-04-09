@@ -7,6 +7,7 @@ import reduceReducers from 'reduce-reducers';
 const initialState = {
     movie: {},
     isLoading: true,
+    error: null
 }
 
 const reducers = handleActions({
@@ -16,11 +17,12 @@ const reducers = handleActions({
     [actionTypes.MOVIE_SUCCESS]: (state, action) => {
         return updateObject(state, {
             isLoading: false,
+            error: null,
             movie: updateObject(action.payload, {}),
         } );
     },
     [actionTypes.MOVIE_FAILED]: (state, action) => {
-        return updateObject(state, { isLoading: false } );
+        return updateObject(state, { isLoading: false, error: action.payload.error } );
     }},
     initialState
 );
