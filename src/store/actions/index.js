@@ -6,6 +6,6 @@ export {
 } from './movies'
 
 export {
-    getMovie,
+    doGetMovie,
 } from './movie'
 

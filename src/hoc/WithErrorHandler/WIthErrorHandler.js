@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Modal }  from '../../components/UI';
+import axios from '../../axios';
 
-const WithErrorHandler = (WrappedComponent, axios) => {
+
+const WithErrorHandler = (WrappedComponent) => {
     const WithErrorHandlerClass = class extends Component {
         state = {
             error: null,

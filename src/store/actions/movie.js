@@ -7,7 +7,7 @@ const doMovieStartAction = createAction(actionTypes.MOVIE_START);
 const doMovieFailAction = createAction(actionTypes.MOVIE_FAILED);
 const doMovieSuccessAction = createAction(actionTypes.MOVIE_SUCCESS);
 
-export const getMovie = (id) => {
+export const doGetMovie = (id) => {
     return async dispatch => {
         dispatch(doMovieStartAction());
 
