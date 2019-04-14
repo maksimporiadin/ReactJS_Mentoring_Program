@@ -1,4 +1,5 @@
 .movie-details-container {
+    min-height: 400px;
     display: grid;
     grid-auto-flow: column;
     align-content: space-around;

@@ -20,7 +20,7 @@ class MoviePage extends Component {
 
     uploadMovie() {
         const id = this.props.match.params.movieId;
-        this.props.doGetMovie(id);
+        this.props.doMovieInitAction(id);
     }
 
     render() {

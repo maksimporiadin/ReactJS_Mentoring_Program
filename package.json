@@ -47,6 +47,7 @@
     "jsdom-global": "3.0.2",
     "postcss-loader": "^3.0.0",
     "react-test-renderer": "^16.8.4",
+    "redux-saga": "^1.0.2",
     "request": "^2.88.0",
     "rimraf": "^2.6.3",
     "static-server": "^2.2.1",

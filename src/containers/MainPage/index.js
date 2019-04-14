@@ -1,9 +1,8 @@
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
 import  MainPage from './MainPage';
-import axios from '../../axios';
-import * as actions from '../../store/actions/index';
+import { doMoviesInitAction, doMoviesChangeSearchAction, doMoviesChangeSortAction, doSortingMoviesAction } from '../../store/actions/index';
 import { connect } from 'react-redux';
-
+import { compose } from 'redux';
 
 const mapStateToProps = state => {
     return {
@@ -16,15 +15,10 @@ const mapStateToProps = state => {
     }
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onGetMovies: (params) => dispatch(actions.getMovies(params)),
-        onMoviesChangeSearch: (search) => dispatch(actions.doMoviesChangeSearchAction({ search })),
-        onMoviesChangeSort: (sort) => dispatch(actions.doMoviesChangeSortAction({ sort })),
-        onSortingMovies: (movies, sort) => dispatch(actions.doSortingMoviesAction({ movies, sort }))
-    };
-};
+const withConnect = connect(mapStateToProps, { doMoviesInitAction, doMoviesChangeSearchAction, doMoviesChangeSortAction, doSortingMoviesAction });
 
-
-export default WithErrorHandler(connect(mapStateToProps, mapDispatchToProps)(MainPage), axios);
+export default compose(
+    WithErrorHandler,
+    withConnect
+)(MainPage);
 

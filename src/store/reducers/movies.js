@@ -29,10 +29,10 @@ const reducers = handleActions({
             return updateObject(state, { loading: false } );
         },
         [actionTypes.MOVIES_CHANGE_SEARCH]: (state, action) => {
-            return updateObject(state, { searchBy: action.payload.search } );
+            return updateObject(state, { searchBy: action.payload } );
         },
         [actionTypes.MOVIES_CHANGE_SORT]: (state, action) => {
-            return updateObject(state, { sortBy: action.payload.sort } );
+            return updateObject(state, { sortBy: action.payload } );
         },
         [actionTypes.SORTING_MOVIES]: (state, action) => {
             const sortedMovies = action.payload.movies.concat().sort((a, b) => a[action.payload.sort] < b[action.payload.sort] ? 1 : -1);

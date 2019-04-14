@@ -1,11 +1,17 @@
 export {
-    getMovies,
     doMoviesChangeSearchAction,
     doMoviesChangeSortAction,
-    doSortingMoviesAction
+    doSortingMoviesAction,
+    doMoviesInitAction,
+    doMoviesStartAction,
+    doMoviesSuccessAction,
+    doMoviesFailedAction
 } from './movies'
 
 export {
-    doGetMovie,
+    doMovieInitAction,
+    doMovieStartAction,
+    doMovieFailAction,
+    doMovieSuccessAction
 } from './movie'
 

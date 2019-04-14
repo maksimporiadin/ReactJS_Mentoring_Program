@@ -10,7 +10,7 @@ class MainPage extends Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.sortBy !== this.props.sortBy) {
-            this.props.onSortingMovies(this.props.movies, this.props.sortBy);
+            this.props.doSortingMoviesAction({ movies: this.props.movies, sortBy: this.props.sortBy });
         }
     }
 
@@ -19,11 +19,11 @@ class MainPage extends Component {
     }
 
     handlerSetSearchBy = (event) => {
-        this.props.onMoviesChangeSearch(event.target.value);
+        this.props.doMoviesChangeSearchAction(event.target.value);
     }
 
     handlerSetSortBy = (event) => {
-        this.props.onMoviesChangeSort(event.target.value);
+        this.props.doMoviesChangeSortAction(event.target.value);
     }
 
     handlerSubmit = (event) => {
@@ -41,7 +41,7 @@ class MainPage extends Component {
             }
         };
 
-        this.props.onGetMovies(moviesData);
+        this.props.doMoviesInitAction(moviesData);
     }
 
     render() {
