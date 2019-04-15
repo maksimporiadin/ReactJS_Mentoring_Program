@@ -1,8 +1,19 @@
 import React from 'react';
 
+import { Spinner } from '../../components/UI';
+import { isEmpty } from '../../shared/utilityMethods';
+
 import './style.css';
 
-export const MovieDetails = ({movie}) => {
+export const MovieDetails = ({movie, loading}) => {
+    if( loading ) {
+        return <Spinner color="#414141"/>;
+    }
+
+    if( isEmpty(movie) ) {
+        return null;
+    };
+
     return (
         <div className="movie-details-container">
             <div className="movie-details-poster">

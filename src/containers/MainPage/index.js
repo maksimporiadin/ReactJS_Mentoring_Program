@@ -1,6 +1,24 @@
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
 import  MainPage from './MainPage';
-import axios from '../../axios';
+import { doMoviesInitAction, doMoviesChangeSearchAction, doMoviesChangeSortAction, doSortingMoviesAction } from '../../store/actions/index';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
-export default WithErrorHandler(MainPage, axios);
+const mapStateToProps = state => {
+    return {
+        loading: state.movies.loading,
+        movies: state.movies.movies,
+        total: state.movies.total,
+        searchBy: state.movies.searchBy,
+        sortBy: state.movies.sortBy,
+        limit: state.movies.limit
+    }
+};
+
+const withConnect = connect(mapStateToProps, { doMoviesInitAction, doMoviesChangeSearchAction, doMoviesChangeSortAction, doSortingMoviesAction });
+
+export default compose(
+    WithErrorHandler,
+    withConnect
+)(MainPage);
 

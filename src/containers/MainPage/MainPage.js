@@ -1,34 +1,17 @@
 import React, { Component } from 'react';
-
-import { SEARCH_BY, SORT_BY } from "../../App.constants";
 import { Header, FilterHeader, MainLayout, Movies, InformPanel, SortBy } from "../../components";
-import { Spinner } from "../../components/UI";
-import api from "../../api";
 import MoviesInform from './MoviesInform';
 
 class MainPage extends Component {
     state = {
-        movies: [],
-        searchBy: SEARCH_BY.TITLE.value,
-        sortBy: SORT_BY.RATING.value,
         inputValue: '',
         isShowSearchButton: false,
-        limit: 10,
-        total: 0,
-        isLoading: false
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.sortBy !== this.state.sortBy) {
-            this.sortingMovies();
+    componentDidUpdate(prevProps) {
+        if (prevProps.sortBy !== this.props.sortBy) {
+            this.props.doSortingMoviesAction({ movies: this.props.movies, sortBy: this.props.sortBy });
         }
-    }
-
-    sortingMovies() {
-        const sort = this.state.sortBy;
-        const sortedMovies = this.state.movies.concat().sort((a, b) => a[sort] < b[sort] ? 1 : -1);
-
-        this.setState({ movies: sortedMovies });
     }
 
     handlerSetFilter = (event) => {
@@ -36,38 +19,29 @@ class MainPage extends Component {
     }
 
     handlerSetSearchBy = (event) => {
-        this.setState({ searchBy: event.target.value });
+        this.props.doMoviesChangeSearchAction(event.target.value);
     }
 
     handlerSetSortBy = (event) => {
-        this.setState({ sortBy: event.target.value });
+        this.props.doMoviesChangeSortAction(event.target.value);
     }
 
     handlerSubmit = (event) => {
         event.preventDefault();
 
-        this.setState({ isLoading: true });
-
         this.getMovies();
     }
 
-    async getMovies() {
+    getMovies() {
         const moviesData = {
             params: {
                 search: this.state.inputValue,
-                searchBy: this.state.searchBy,
-                limit: this.state.limit
+                searchBy: this.props.searchBy,
+                limit: this.props.limit
             }
         };
 
-        try {
-            const responce = await api.getMovies(moviesData);
-
-            this.setState({ movies: responce.data.data, isLoading: false, total: responce.data.total });
-            this.sortingMovies();
-        } catch (err) {
-            this.setState({ isLoading: false });
-        }
+        this.props.doMoviesInitAction(moviesData);
     }
 
     render() {
@@ -75,7 +49,7 @@ class MainPage extends Component {
             <MainLayout>
                 <Header isShowSearchButton={this.state.isShowSearchButton}>
                     <FilterHeader
-                        searchBy={this.state.searchBy}
+                        searchBy={this.props.searchBy}
                         inputValue={this.state.inputValue}
                         onFilterChange={this.handlerSetFilter}
                         onChangeSearchBy={this.handlerSetSearchBy}
@@ -83,18 +57,17 @@ class MainPage extends Component {
                 </Header>
                 <InformPanel>
                     <MoviesInform
-                        count={this.state.total} >
+                        count={this.props.total} >
 
                         <SortBy
-                            sortBy={this.state.sortBy}
+                            sortBy={this.props.sortBy}
                             onChange={this.handlerSetSortBy} />
                     </MoviesInform>
                 </InformPanel>
-                { this.state.isLoading ? <Spinner /> : <Movies movies={this.state.movies} /> }
+                <Movies movies={this.props.movies} loading={this.props.loading} /> }
             </MainLayout>
         );
     }
-
 
 }
 
