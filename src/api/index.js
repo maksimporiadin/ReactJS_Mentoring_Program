@@ -2,7 +2,7 @@ import axios from '../axios';
 
 const api = {
     async getMovies(data) {
-        const response = await axios.get('/movies', data);
+        const response = await axios.get('/movies', { params: data });
         return response;
     },
 
