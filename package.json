@@ -46,6 +46,7 @@
     "jsdom": "14.0.0",
     "jsdom-global": "3.0.2",
     "postcss-loader": "^3.0.0",
+    "query-string": "^6.4.2",
     "react-test-renderer": "^16.8.4",
     "redux-saga": "^1.0.2",
     "request": "^2.88.0",
@@ -60,6 +61,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "query-string": "^6.4.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-hot-loader": "^4.8.0",

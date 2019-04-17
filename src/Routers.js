@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router';
 
 import MainPage from './containers/MainPage';
 import MoviePage from './containers/MoviePage';
+import ErrorPage from './containers/ErrorPage';
 
 const Routers = () => {
         return (
@@ -15,10 +16,11 @@ const Routers = () => {
                 <Route
                     exact
                     component={MoviePage}
-                    path='/movies/:movieId'
+                    path='/movie/:movieId'
                 />
-                <Route path='/'
-                       render={() => <Redirect to='/movies'/>}
+                <Route
+                    path='/'
+                    component={ErrorPage}
                 />
             </Switch>
         );

@@ -1,6 +1,6 @@
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
 import  MainPage from './MainPage';
-import { doMoviesInitAction, doMoviesChangeSearchAction, doMoviesChangeSortAction, doSortingMoviesAction } from '../../store/actions/index';
+import { doMoviesInitAction, doMoviesChangeSearchAction, doMoviesChangeSearchQueryAction, doMoviesChangeSortAction, doSortingMoviesAction } from '../../store/actions/index';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -15,7 +15,7 @@ const mapStateToProps = state => {
     }
 };
 
-const withConnect = connect(mapStateToProps, { doMoviesInitAction, doMoviesChangeSearchAction, doMoviesChangeSortAction, doSortingMoviesAction });
+const withConnect = connect(mapStateToProps, { doMoviesInitAction, doMoviesChangeSearchAction, doMoviesChangeSortAction, doSortingMoviesAction, doMoviesChangeSearchQueryAction });
 
 export default compose(
     WithErrorHandler,

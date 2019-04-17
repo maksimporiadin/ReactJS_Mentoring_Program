@@ -1,5 +1,4 @@
 import { updateObject } from '../../shared/utilityMethods';
-import { SEARCH_BY } from "../../App.constants";
 import * as actionTypes from '../actions/actionTypes';
 
 import { handleActions } from 'redux-actions';
@@ -7,8 +6,9 @@ import reduceReducers from 'reduce-reducers';
 
 const initialState = {
     movies: [],
-    searchBy: SEARCH_BY.TITLE.value,
+    searchBy: '',
     sortBy: '',
+    search: '?search=q&searchBy=title',
     limit: 10,
     total: 0,
     isLoading: false
@@ -30,6 +30,9 @@ const reducers = handleActions({
         },
         [actionTypes.MOVIES_CHANGE_SEARCH]: (state, action) => {
             return updateObject(state, { searchBy: action.payload } );
+        },
+        [actionTypes.MOVIES_CHANGE_SEARCH_QUERY]: (state, action) => {
+            return updateObject(state, { search: action.payload } );
         },
         [actionTypes.MOVIES_CHANGE_SORT]: (state, action) => {
             return updateObject(state, { sortBy: action.payload } );

@@ -7,5 +7,6 @@ export const doMoviesSuccessAction  = createAction(actionTypes.MOVIES_SUCCESS);
 export const doMoviesFailedAction = createAction(actionTypes.MOVIES_FAILED);
 
 export const doMoviesChangeSearchAction = createAction(actionTypes.MOVIES_CHANGE_SEARCH);
+export const doMoviesChangeSearchQueryAction = createAction(actionTypes.MOVIES_CHANGE_SEARCH_QUERY);
 export const doMoviesChangeSortAction = createAction(actionTypes.MOVIES_CHANGE_SORT);
 export const doSortingMoviesAction = createAction(actionTypes.SORTING_MOVIES);
