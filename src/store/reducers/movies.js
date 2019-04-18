@@ -6,9 +6,9 @@ import reduceReducers from 'reduce-reducers';
 
 const initialState = {
     movies: [],
-    searchBy: '',
+    searchBy: 'genre',
     sortBy: '',
-    search: '?search=q&searchBy=title',
+    search: '',
     limit: 10,
     total: 0,
     isLoading: false

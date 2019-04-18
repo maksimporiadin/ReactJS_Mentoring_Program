@@ -11,20 +11,26 @@ class MainPage extends Component {
 
     componentDidMount() {
         const param = queryString.parse(this.props.location.search);
+        const searchBy = param.searchBy ? param.searchBy : this.props.searchBy;
+        const search = param.search ? param.search : this.state.inputValue;
+
+        this.setState({ inputValue: param.search });
+
+        this.props.history.push({
+            pathname: this.props.location.pathname,
+            search: `?${queryString.stringify({ search: search , searchBy: searchBy })}`
+        });
 
         param.searchBy &&
             this.props.doMoviesChangeSearchAction(param.searchBy);
 
-        if (param.search) {
-            this.setState({ inputValue: param.search });
-            this.props.doMoviesInitAction({
-                params: {
-                    search: param.search,
-                    searchBy: param.searchBy ? param.searchBy : this.props.searchBy,
-                    limit: this.props.limit
-                }
-            });
-        };
+        this.props.doMoviesInitAction({
+            params: {
+                search: param.search,
+                searchBy: searchBy,
+                limit: this.props.limit
+            }
+        });
     }
 
     componentDidUpdate(prevProps) {
