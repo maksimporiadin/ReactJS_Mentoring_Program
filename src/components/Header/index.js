@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect  } from 'react-router';
+import { connect } from 'react-redux';
 
 import { Button, Logo } from '../UI';
 
@@ -15,11 +16,12 @@ class Header extends Component {
     }
 
     render () {
+        const path = `/movies${this.props.search}`
         return (
             <header className="header">
                 {
                     this.state.isClicked &&
-                    <Redirect push to="/movies" />
+                    <Redirect push to={path} />
                 }
                 <div className="header-logo">
                     <Logo/>
@@ -38,4 +40,10 @@ class Header extends Component {
     }
 }
 
-export default Header;
+const mapStateToProps = state => {
+    return {
+        search: state.movies.search,
+    }
+};
+
+export default connect(mapStateToProps, null)(Header);

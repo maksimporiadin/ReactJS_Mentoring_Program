@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import queryString from  'query-string';
 import { Header, FilterHeader, MainLayout, Movies, InformPanel, SortBy } from "../../components";
 import MoviesInform from './MoviesInform';
 
@@ -6,6 +7,30 @@ class MainPage extends Component {
     state = {
         inputValue: '',
         isShowSearchButton: false,
+    }
+
+    componentDidMount() {
+        const param = queryString.parse(this.props.location.search);
+        const searchBy = param.searchBy ? param.searchBy : this.props.searchBy;
+        const search = param.search ? param.search : this.state.inputValue;
+
+        this.setState({ inputValue: param.search });
+
+        this.props.history.push({
+            pathname: this.props.location.pathname,
+            search: `?${queryString.stringify({ search: search , searchBy: searchBy })}`
+        });
+
+        param.searchBy &&
+            this.props.doMoviesChangeSearchAction(param.searchBy);
+
+        this.props.doMoviesInitAction({
+            params: {
+                search: param.search,
+                searchBy: searchBy,
+                limit: this.props.limit
+            }
+        });
     }
 
     componentDidUpdate(prevProps) {
@@ -41,7 +66,20 @@ class MainPage extends Component {
             }
         };
 
+        this.saveQuery();
+
         this.props.doMoviesInitAction(moviesData);
+    }
+
+    saveQuery() {
+        const searchQueryString = `?${queryString.stringify({ search: this.state.inputValue , searchBy: this.props.searchBy })}`;
+
+        this.props.history.push({
+            pathname: this.props.location.pathname,
+            search: searchQueryString
+        });
+
+        this.props.doMoviesChangeSearchQueryAction(searchQueryString);
     }
 
     render() {

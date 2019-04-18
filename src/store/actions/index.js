@@ -1,5 +1,6 @@
 export {
     doMoviesChangeSearchAction,
+    doMoviesChangeSearchQueryAction,
     doMoviesChangeSortAction,
     doSortingMoviesAction,
     doMoviesInitAction,
