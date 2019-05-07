@@ -36,6 +36,7 @@
     "redux-actions": "^2.6.5",
     "reduce-reducers": "^1.0.1",
     "axios": "^0.18.0",
+    "isomorphic-fetch": "^2.2.1",
     "query-string": "^6.4.2"
   },
   "devDependencies": {

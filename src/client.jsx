@@ -6,8 +6,10 @@ import App from "./App";
 
 import store from './store';
 
+const configureStore = store(window.PRELOADED_STATE);
+
 const app = (
-    <Provider store={store}>
+    <Provider store={configureStore}>
         <BrowserRouter>
             <App />
         </BrowserRouter>

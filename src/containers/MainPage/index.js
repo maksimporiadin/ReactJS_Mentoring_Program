@@ -6,7 +6,7 @@ import { compose } from 'redux';
 
 const mapStateToProps = state => {
     return {
-        loading: state.movies.loading,
+        loading: state.movies.isLoading,
         movies: state.movies.movies,
         total: state.movies.total,
         searchBy: state.movies.searchBy,

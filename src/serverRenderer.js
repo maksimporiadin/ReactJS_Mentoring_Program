@@ -6,7 +6,7 @@ import App from "./App";
 
 import store from './store';
 
-function renderHTML(html) {
+function renderHTML(html, preloadedState) {
     return `
     <!DOCTYPE html>
     <html>
@@ -21,6 +21,11 @@ function renderHTML(html) {
     
         <body>
             <div id="root">${html}</div>
+            <script>
+                // WARNING: See the following for security issues around embedding JSON in HTML:
+                // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
+                window.PRELOADED_STATE = ${JSON.stringify(preloadedState).replace(/</g, '\\\u003c')}
+            </script>
             <script src="/js/main.js"></script>
         </body>
     
@@ -30,9 +35,11 @@ function renderHTML(html) {
 
 export default function serverRenderer() {
     return (req, res) => {
+        console.log('req.url', req.url);
         const context = {};
+        const configureStore = store();
         const app = (
-            <Provider store={store}>
+            <Provider store={configureStore}>
                 <StaticRouter
                     location={req.url}
                     context={context}>
@@ -41,16 +48,22 @@ export default function serverRenderer() {
             </Provider>
         );
 
-        const htmlString = renderToString(app);
+        configureStore.runSagaMovies().done.then(() => {
+            const htmlString = renderToString(app);
+            if (context.url) {
+                res.writeHead(302, {
+                    Location: context.url,
+                });
+                res.end();
+                return;
+            }
 
-        if (context.url) {
-            res.writeHead(302, {
-                Location: context.url,
-            });
-            res.end();
-            return;
-        }
+            const preloadedState = configureStore.getState();
 
-        res.send(renderHTML(htmlString));
+            res.send(renderHTML(htmlString, preloadedState));
+        });
+
+         renderToString(app);
+         configureStore.close();
     };
 }

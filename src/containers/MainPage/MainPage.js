@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import queryString from  'query-string';
 import { Header, FilterHeader, MainLayout, Movies, InformPanel, SortBy } from "../../components";
 import MoviesInform from './MoviesInform';
@@ -23,6 +23,8 @@ class MainPage extends Component {
 
         param.searchBy &&
             this.props.doMoviesChangeSearchAction(param.searchBy);
+
+        console.log('param', param);
 
         this.props.doMoviesInitAction({
             params: {
@@ -83,6 +85,12 @@ class MainPage extends Component {
     }
 
     render() {
+        if (!this.props.movies.length && this.props.loading === true) {
+            console.log('this.props.movies.length', this.props.movies.length)
+            console.log('this.props.loading', this.props.loading)
+            this.getMovies();
+        }
+
         return (
             <MainLayout>
                 <Header isShowSearchButton={this.state.isShowSearchButton}>

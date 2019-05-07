@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 
-import createSagaMiddleware from "redux-saga";
+import createSagaMiddleware, { END } from "redux-saga";
 
 
 import moviesReducer from './store/reducers/movies';
@@ -22,8 +22,18 @@ const rootReducer = combineReducers({
     movie: movieReducer
 });
 
-export default createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
+export default (initialState) => {
+    const store = createStore(rootReducer,initialState,  composeEnhancers(applyMiddleware(sagaMiddleware)));
+        sagaMiddleware.run(watchInitMoviesSaga);
+        sagaMiddleware.run(watchInitMovieSaga);
 
-sagaMiddleware.run(watchInitMoviesSaga);
-sagaMiddleware.run(watchInitMovieSaga);
+        store.runSagaMovies = () => sagaMiddleware.run(watchInitMoviesSaga);
+        store.runSagaMovie = () => sagaMiddleware.run(watchInitMovieSaga);
+
+        store.close = () => store.dispatch(END);
+
+    return store;
+};
+
+
 
