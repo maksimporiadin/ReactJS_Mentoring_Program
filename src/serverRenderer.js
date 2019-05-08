@@ -5,6 +5,10 @@ import { Provider } from 'react-redux';
 import App from "./App";
 
 import store from './store';
+import api from './api';
+import queryString from  'query-string';
+
+const router = require('express').Router();
 
 function renderHTML(html, preloadedState) {
     return `
@@ -33,37 +37,76 @@ function renderHTML(html, preloadedState) {
   `;
 }
 
-export default function serverRenderer() {
-    return (req, res) => {
-        console.log('req.url', req.url);
-        const context = {};
-        const configureStore = store();
-        const app = (
-            <Provider store={configureStore}>
-                <StaticRouter
-                    location={req.url}
-                    context={context}>
-                    <App />
-                </StaticRouter>
-            </Provider>
-        );
-
-        configureStore.runSagaMovies().done.then(() => {
-            const htmlString = renderToString(app);
-            if (context.url) {
-                res.writeHead(302, {
-                    Location: context.url,
-                });
-                res.end();
-                return;
-            }
-
-            const preloadedState = configureStore.getState();
-
-            res.send(renderHTML(htmlString, preloadedState));
-        });
-
-         renderToString(app);
-         configureStore.close();
+function serverRenderer(data, req, res) {
+    const context = {};
+    let initStore = {
+        movies: {
+            movies: [],
+            searchBy: 'genre',
+            sortBy: '',
+            search: '',
+            limit: 10,
+            total: 0,
+            isLoading: false
+        },
+        movie: {
+            movie: {},
+            isLoading: false,
+            error: null
+        }
     };
+
+    initStore = setDataToState(data, initStore);
+
+    const configureStore = store(initStore);
+    const app = (
+        <Provider store={configureStore}>
+            <StaticRouter
+                location={req.url}
+                context={context}>
+                <App />
+            </StaticRouter>
+        </Provider>
+    );
+    const htmlString = renderToString(app);
+    const preloadedState = configureStore.getState();
+
+    res.send(renderHTML(htmlString, preloadedState));
 }
+
+function setDataToState(data, initStore) {
+    switch (data.api) {
+        case 'movies':
+            initStore.movies.movies = data.data;
+            initStore.movies.total = data.total;
+            break;
+
+        case 'movie':
+            initStore.movie.movie = data.data;
+            break;
+    }
+
+    return initStore;
+}
+
+router.get('/movies', function(req, res, next) {
+    const param = queryString.parse(req.url);
+
+    api.getMovies(param).then((data) => {
+        data.api = 'movies';
+
+        serverRenderer(data, req, res)
+    });
+});
+
+router.get('/movie/:id', function(req, res, next) {
+    const id = req.params.id;
+
+    api.getMovie(id).then((data) => {
+        data.api = 'movie';
+
+        serverRenderer(data, req, res)
+    });
+});
+
+export default () => router;

@@ -21,4 +21,3 @@ export default compose(
     WithErrorHandler,
     withConnect
 )(MainPage);
-
