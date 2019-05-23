@@ -12,7 +12,7 @@ const initGetMoviesSaga = function* initGetMoviesSaga(action) {
 
     try {
         const response = yield api.getMovies(action.payload.params);
-        yield put(doMoviesSuccessAction({ movies: response.data.data, total : response.data.total }));
+        yield put(doMoviesSuccessAction({ movies: response.data, total : response.total }));
     } catch (error) {
         yield put(doMoviesFailedAction());
         console.log(`request GET: /movies was fail`);

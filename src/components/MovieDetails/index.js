@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 
 import { Spinner } from '../../components/UI';
@@ -5,7 +7,14 @@ import { isEmpty } from '../../shared/utilityMethods';
 
 import './style.css';
 
-export const MovieDetails = ({movie, loading}) => {
+type MovieProps = {
+    movie: Object;
+    loading: Boolean;
+}
+
+export const MovieDetails = (props: MovieProps) => {
+    const { movie, loading } = props;
+
     if( loading ) {
         return <Spinner color="#414141"/>;
     }

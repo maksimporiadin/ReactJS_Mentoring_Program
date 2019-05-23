@@ -1,9 +1,18 @@
+// @flow
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './style.css';
 
-const Movie = ({ movie }) => (
+type MovieProps = {
+    movie: Object;
+}
+
+const Movie = (props: MovieProps) => {
+    const { movie } = props;
+
+    return (
     <div className="movie-container">
         <div className="movie-content">
             <img className="movie-poster"
@@ -20,6 +29,6 @@ const Movie = ({ movie }) => (
             </div>
         </div>
     </div>
-);
+)};
 
 export default Movie;
